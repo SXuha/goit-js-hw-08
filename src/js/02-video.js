@@ -14,22 +14,23 @@ player.on('play', function() {
     if(!seconds){
         seconds = 0;
     }
-    player.setCurrentTime(currentTime).then(function(seconds) {
-        // seconds = the actual time that the player seeked to
-        console.log('Time has set to: ' + seconds);
-        player.off('play');
-    }).catch(function(error) {
-        switch (error.name) {
-            case 'RangeError':
-                console.error("the time was less than 0 or greater than the video’s duration");
-                break;
-    
-            default:
-                console.error("Vimeo player: error occurred",error);
-                break;
-        }
-    });
 } );
+
+player.setCurrentTime(currentTime).then(function(seconds) {
+    // seconds = the actual time that the player seeked to
+    console.log('Time has set to: ' + seconds);
+    player.off('play');
+}).catch(function(error) {
+    switch (error.name) {
+        case 'RangeError':
+            console.error("the time was less than 0 or greater than the video’s duration");
+            break;
+
+        default:
+            console.error("Vimeo player: error occurred",error);
+            break;
+    }
+});
 
 function onTimeUpdate(data) {
     //console.log("videoplayer-current-time",data);
