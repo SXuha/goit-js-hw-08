@@ -3,6 +3,7 @@ import throttle from "lodash.throttle";
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
+const currentTime = localStorage.getItem('videoplayer-current-time');
 
 
 
@@ -13,7 +14,7 @@ player.on('play', function() {
     if(!seconds){
         seconds = 0;
     }
-    player.setCurrentTime(seconds).then(function(seconds) {
+    player.setCurrentTime(currentTime).then(function(seconds) {
         // seconds = the actual time that the player seeked to
         console.log('Time has set to: ' + seconds);
         player.off('play');
